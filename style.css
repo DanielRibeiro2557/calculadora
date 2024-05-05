@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "SF Pro";
+    src: url(SF-Pro-Display-Light.otf);
+}
+
+:root{
+    --laranja: #ff9f0c;
+    --cinza-claro: #a5a5a5;
+    --cinza: #333333;
+    --tamanho: 80px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: "SF Pro";
+    color: white;
+    background-color: black;
+    font-weight: 100;
+    font-size: 2rem;
+}
+
+main{
+    width: 360px;
+    height: 100%;
+    margin: auto;
+}
+
+#resultado{
+    display: flex;
+    padding-right: 20px;
+    width: 100%;
+    height: 130px;
+    font-size: 90px;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.outros, .operacao, .botao:not(#numero0){
+    height: var(--tamanho);
+    width: var(--tamanho);
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outros{
+    background-color: var(--cinza-claro);
+}
+
+.operacao{
+    background-color: var(--laranja);
+}
+
+.botao{
+    background-color: var(--cinza);
+}
+
+#calc{
+    margin: 10px;
+    position: absolute;
+    display: grid;
+    grid-area: 1 1 6 5;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 10px;
+    bottom: 60px;
+}
+
+#numero0{
+    display: flex;
+    align-items: center;
+    padding-left: 33px;
+    grid-column: 1/3;
+    border-radius: 50px;
+    cursor: pointer;
+}
