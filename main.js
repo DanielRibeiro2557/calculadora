@@ -15,7 +15,10 @@ const soma = document.getElementById("soma")
 const subtracao = document.getElementById("subtracao")
 const multiplicacao = document.getElementById("multiplicacao")
 const divisao = document.getElementById("divisao")
+
 const ac = document.getElementById("ac")
+const maismen = document.getElementById("maismen")
+const porcent = document.getElementById("porcent")
 
 const resultado = document.getElementById("resultado")
 
@@ -29,18 +32,18 @@ let calculando = false
 let ja = false
 let jad = false
 let igu = false
+let ne1 = '0'
+let ne2 = '0'
 
 ac.addEventListener("click", function reset() {
     resul = '0'
     rese = true
     result()
 })
-
 n0.addEventListener("click", function num1() {
     res = '0'
     result()
 })
-
 n1.addEventListener("click", function num1() {
     res = '1'
 
@@ -82,27 +85,40 @@ virgula.addEventListener("click", function b() {
     res = ","
     result()
 })
-
 soma.addEventListener("click", function a(){
     calculando = true
     equa = 1//equação usada
-    result()
+    egua()
     /*soma: 1
     subtração: 2
     multiplicação: 3
     divisão: 4*/
 })
-
+subtracao.addEventListener("click", function c(){
+    calculando = true
+    equa = 2//equação usada
+    egua()
+})
+multiplicacao.addEventListener("click", function a(){
+    calculando = true
+    equa = 3//equação usada
+    egua()
+})
+divisao.addEventListener("click", function a(){
+    calculando = true
+    equa = 4//equação usada
+    egua()
+})
 igual.addEventListener("click", function func(){
     igu = true
-    result()
+    egua()
 })
 
 function result() {
-    let n1 = '0'
-    let n2 = '0'
     if(rese){
         resul = '0'
+        ne1 = 0
+        ne2 = 0
         rese = false
     } else {
         if(resul.includes(",")){
@@ -124,32 +140,49 @@ function result() {
         }
     }
     resultado.innerHTML = `${resul}`
-    parseFloat(resul)
+}
+
+function egua(){
+    if(resul.includes(',')){
+        resul = resul.split(',')
+        resul = `${resul[0]}.${resul[1]}`
+    }
     if(calculando){
-        console.log("n1: " + n1)
-        if(ja == true){
-            n2 = resul
-            resul = '0'
-        } else {
-            n1 = resul
-            console.log("n1: " + n1)
-            resul = 'queijo'
-            console.log("n1: " + n1)
-            console.log("resul: " + resul)
-            console.log("n2: " + n2)
-            ja = true
-        }
-    }
-    if(igu){
-        n2 = resul 
-        resul = '0'
-        parseFloat(n1)
-        parseFloat(n2)
-        resul = n1 + n2
+        ne1 = parseFloat(resul)
+        calculando = false
+        resul = 0
         resultado.innerHTML = `${resul}`
-        igu = false
     }
-    resul.toString()
+
+    if(igu){
+        ne2 = parseFloat(resul)
+        switch(equa){
+            case 1:
+                resul = ne1 + ne2
+                break
+            case 2:
+                resul = ne1 - ne2
+                break
+            case 3:
+                resul = ne1 * ne2
+                break
+            case 4:
+                if(n2 = 0){
+                    resul = 'Erro'
+                } else {
+                    resul = ne1 / ne2
+                }
+                break
+        }
+        resul = resul.toString()
+        if(resul.includes('.')){
+            resul = resul.split('.')
+            resul = `${resul[0]},${resul[1]}`
+        }
+        igu = false
+        resultado.innerHTML = `${resul}`
+    }
+    resul = resul.toString()
 }
 
 
